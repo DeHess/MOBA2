@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="en">
 <head>
@@ -9,7 +8,6 @@
   <script src="navibar.js"></script>
   
   <style>
-    
     body {
       margin: 0;
       padding: 0;
@@ -19,20 +17,37 @@
       width: 100vw;
       position: fixed;
       bottom: 0;
-      /* ... */
+      display: flex;
+      justify-content: center;
     }
 
     navigation-bar a img {
       opacity: 0.3;
-      /* ... */
+      width: 40px;
+      height: 40px;
+      transition: opacity 0.3s ease;
     }
 
+    navigation-bar a img:hover {
+      opacity: 1;
+    }
   </style>
 
 </head>
 <body>
-
-  
-  
+    <navigation-bar>
+        <a href="https://youtube.com" target="_blank">
+            <img src="images/coffee.png" alt="Coffee" />
+        </a>
+        <a href="https://youtube.com" target="_blank">
+            <img src="images/home.png" alt="Home" />
+        </a>
+        <a href="https://youtube.com" target="_blank">
+            <img src="images/Map.png" alt="Map" />
+        </a>
+        <a href="https://youtube.com" target="_blank">
+            <img src="images/settings.png" alt="Settings" />
+        </a>
+    </navigation-bar>
 </body>
 </html>

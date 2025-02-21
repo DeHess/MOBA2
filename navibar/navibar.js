@@ -5,6 +5,7 @@ class CustomNavigationBar extends HTMLElement {
         shadowRoot.innerHTML = `
           <style>   
             div.navibar {
+              display:flex  
               align-items: center;
               background-color: #ccc;
               margin: 0;
@@ -12,7 +13,7 @@ class CustomNavigationBar extends HTMLElement {
               height: 100%;
             }
             ::slotted(a) {
-              display: block;
+              display: inline-block;
               text-align: center;
            }
           </style>
