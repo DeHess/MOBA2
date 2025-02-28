@@ -1,38 +1,46 @@
-import { useState } from "react"
-import Light from './Light.jsx'
-import './TrafficLight.css'
+import { useState, useEffect } from "react";
+import Light from "./Light.jsx";
+import "./TrafficLight.css";
 
 function TrafficLight() {
+    const [step, setStep] = useState(0);
+    const [state, setState] = useState("red");
 
-    const [step, setStep] = useState(0)
-    const [state, setState] = useState('red')
+    useEffect(() => {
+        const interval = setInterval(nextStep, 1000); // Switch every second
+        return () => clearInterval(interval); // Cleanup interval on unmount
+    }, [step]); // Depend on step to trigger re-renders
 
     function nextStep() {
-        if (step === 0) {
-            setState('red')
-            setStep(1)
-        }
-        if (step === 1) {
-            setState('yellow')
-            setStep(2)
-        }
-        if (step === 2) {
-            setState('green')
-            setStep(3)
-        }
-        if (step === 3) {
-            setState('yellow')
-            setStep(4)
-        }
+        setStep((prevStep) => {
+            const newStep = (prevStep + 1) % 4; // Cycle through 0, 1, 2, 3
+            switch (newStep) {
+                case 0:
+                    setState("red");
+                    break;
+                case 1:
+                    setState("yellow");
+                    break;
+                case 2:
+                    setState("green");
+                    break;
+                case 3:
+                    setState("yellow");
+                    break;
+                default:
+                    break;
+            }
+            return newStep;
+        });
     }
 
     return (
         <div className="trafficLight" onClick={nextStep}>
-            <Light color={'red'} active={state === 'red'}></Light>
-            <Light color={'yellow'} active={state === 'yellow'}></Light>
-            <Light color={'green'} active={state === 'green'}></Light>
+            <Light color="red" active={state === "red"} />
+            <Light color="yellow" active={state === "yellow"} />
+            <Light color="green" active={state === "green"} />
         </div>
-    )
+    );
 }
 
-export default TrafficLight
+export default TrafficLight;

@@ -1,10 +1,11 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import TrafficLight from './TrafficLight'
+import './body.css'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <div style={{display: 'flex', background: 'black'}}>
+    <div style={{display: 'flex'}}>
       <TrafficLight></TrafficLight>
       <TrafficLight></TrafficLight>
     </div>
