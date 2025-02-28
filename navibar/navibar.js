@@ -15,6 +15,7 @@ class CustomNavigationBar extends HTMLElement {
             ::slotted(a) {
               display: inline-block;
               text-align: center;
+              padding: 10px;
            }
           </style>
           <div class="navibar">
