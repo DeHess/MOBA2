@@ -1,6 +1,6 @@
 async function getData() {
     console.log("hello")
-    const url = "https://cors-anywhere.herokuapp.com/https://a.4cdn.org/boards.json";
+    const url = "https://a.4cdn.org/boards.json";
     try {
     const response = await fetch(url);
     if (!response.ok) {
@@ -9,7 +9,6 @@ async function getData() {
 
     const json = await response.json();
     console.log(json);
-    document.getElementsByTagName("div")[0].innerHTML = json
     } catch (error) {
     console.error(error.message);
     }
