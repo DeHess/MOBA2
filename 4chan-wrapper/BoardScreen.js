@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { ScrollView, View, Text, StyleSheet } from 'react-native';
+import { ScrollView, View, Text, StyleSheet, TouchableOpacity, Linking } from 'react-native';
 
-const ResultScreen = () => {
-  const [data, setData] = useState(null);
+const BoardScreen = () => {
+  const [boards, setBoards] = useState([]);
 
   useEffect(() => {
     const getData = async () => {
@@ -14,23 +14,35 @@ const ResultScreen = () => {
           throw new Error(`Response status: ${response.status}`);
         }
         const json = await response.json();
-        setData(JSON.stringify(json, null, 2)); // Convert JSON to readable string
+        setBoards(json.boards); // Store the boards array in state
       } catch (error) {
         console.error(error.message);
-        setData('Error fetching data');
       }
     };
 
     getData();
   }, []);
 
+  const openBoardLink = (boardId) => {
+    const boardUrl = `https://boards.4chan.org/${boardId}/`;
+    Linking.openURL(boardUrl).catch(err => console.error("Couldn't load page", err));
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.headerContainer}>
-        <Text style={styles.header}>4Chan Wrapper</Text>
+        <Text style={styles.header}>4chan Boards</Text>
       </View>
       <ScrollView style={styles.scrollView}>
-        <Text style={styles.text}>{data ? data : 'Loading...'}</Text>
+      {boards.length > 0 ? (
+          boards.map((board, index) => (
+            <TouchableOpacity key={index} style={styles.item} onPress={() => openBoardLink(board.board)}>
+              <Text style={styles.itemText}>{board.title}</Text>
+            </TouchableOpacity>
+          ))
+        ) : (
+          <Text style={styles.loadingText}>Loading...</Text>
+        )}
       </ScrollView>
     </View>
   );
@@ -49,26 +61,36 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     paddingVertical: 15,
     alignItems: 'center',
-    elevation: 4, // Shadow effect for Android
+    elevation: 4,
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.2,
     shadowRadius: 2,
-    zIndex: 10, // Keeps it above scrollable content
+    zIndex: 10,
   },
   header: {
     fontSize: 20,
     fontWeight: 'bold',
   },
   scrollView: {
-    marginTop: 60, // Pushes content below fixed header
+    marginTop: 60,
     paddingHorizontal: 20,
   },
-  text: {
-    fontSize: 14,
-    color: '#333',
-    paddingBottom: 20, // Prevent content from being cut off at the bottom
+  item: {
+    backgroundColor: '#f0f0f0',
+    padding: 15,
+    marginVertical: 5,
+    borderRadius: 8,
+  },
+  itemText: {
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+  loadingText: {
+    fontSize: 16,
+    textAlign: 'center',
+    marginTop: 20,
   },
 });
 
-export default ResultScreen;
+export default BoardScreen;
