@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
 const useFetchCatalogue = (boardID) => {
-  const [jsonOutput, setJsonOutput] = useState("");
+  const [pages, setPages] = useState([]);
 
   useEffect(() => {
     const getData = async () => {
@@ -13,7 +13,7 @@ const useFetchCatalogue = (boardID) => {
           throw new Error(`Response status: ${response.status}`);
         }
         const json = await response.json();
-        setJsonOutput(JSON.stringify(json, null, 2))
+        setPages(json)
       } catch (error) {
         console.error(error.message);
       }
@@ -22,7 +22,7 @@ const useFetchCatalogue = (boardID) => {
     getData();
   }, []);
 
-  return jsonOutput;
+  return pages;
 };
 
 export default useFetchCatalogue;

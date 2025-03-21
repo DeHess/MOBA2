@@ -43,6 +43,30 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginTop: 20,
   },
+  container: {
+    flex: 1,
+    padding: 10,
+    backgroundColor: "#f8f9fa",
+  },
+  pageContainer: {
+    marginBottom: 20,
+    padding: 10,
+    backgroundColor: "#ffffff",
+    borderRadius: 10,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+  },
+  pageTitle: {
+    fontSize: 18,
+    fontWeight: "bold",
+    marginBottom: 5,
+  },
+  threadText: {
+    fontSize: 16,
+    marginLeft: 10,
+  },
 });
 
 export default styles;
