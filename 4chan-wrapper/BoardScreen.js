@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import { ScrollView, View, Text, StyleSheet, TouchableOpacity, Linking } from 'react-native';
+import { ScrollView, View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import useFetchBoards from './utilityJs/fetchBoardData';
 import openBoardLink from './utilityJs/openBoardLink';
 
 const BoardScreen = () => {
   const boards = useFetchBoards();
-  
+
   return (
     <View style={styles.container}>
       <View style={styles.headerContainer}>
