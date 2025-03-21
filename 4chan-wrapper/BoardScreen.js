@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { ScrollView, View, Text, StyleSheet, TouchableOpacity, Linking } from 'react-native';
 
+
 const BoardScreen = () => {
   const [boards, setBoards] = useState([]);
 
@@ -94,3 +95,4 @@ const styles = StyleSheet.create({
 });
 
 export default BoardScreen;
+
