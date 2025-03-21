@@ -1,8 +1,10 @@
 import { ScrollView, View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import useFetchBoards from './utilityJs/fetchBoardData';
 import openBoardLink from './utilityJs/openBoardLink';
 
 const BoardScreen = () => {
+  const navigation = useNavigation();
   const boards = useFetchBoards();
 
   return (
