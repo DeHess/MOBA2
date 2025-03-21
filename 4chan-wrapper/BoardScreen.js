@@ -1,34 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { ScrollView, View, Text, StyleSheet, TouchableOpacity, Linking } from 'react-native';
-
+import useFetchBoards from './utilityJs/fetchBoardData';
+import openBoardLink from './utilityJs/openBoardLink';
 
 const BoardScreen = () => {
-  const [boards, setBoards] = useState([]);
-
-  useEffect(() => {
-    const getData = async () => {
-      console.log('Fetching data...');
-      const url = 'https://a.4cdn.org/boards.json';
-      try {
-        const response = await fetch(url);
-        if (!response.ok) {
-          throw new Error(`Response status: ${response.status}`);
-        }
-        const json = await response.json();
-        setBoards(json.boards); // Store the boards array in state
-      } catch (error) {
-        console.error(error.message);
-      }
-    };
-
-    getData();
-  }, []);
-
-  const openBoardLink = (boardId) => {
-    const boardUrl = `https://boards.4chan.org/${boardId}/`;
-    Linking.openURL(boardUrl).catch(err => console.error("Couldn't load page", err));
-  };
-
+  const boards = useFetchBoards();
+  
   return (
     <View style={styles.container}>
       <View style={styles.headerContainer}>
