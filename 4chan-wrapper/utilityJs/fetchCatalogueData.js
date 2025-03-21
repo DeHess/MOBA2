@@ -1,19 +1,19 @@
 import { useEffect, useState } from 'react';
 
-const useFetchBoards = () => {
-  const [boards, setBoards] = useState([]);
+const useFetchCatalogue = (boardID) => {
+  const [jsonOutput, setJsonOutput] = useState("");
 
   useEffect(() => {
     const getData = async () => {
       console.log('Fetching data...');
-      const url = 'https://a.4cdn.org/boards.json';
+      const url = `https://a.4cdn.org/${boardID}/catalog.json`;
       try {
         const response = await fetch(url);
         if (!response.ok) {
           throw new Error(`Response status: ${response.status}`);
         }
         const json = await response.json();
-        setBoards(json.boards);
+        setJsonOutput(JSON.stringify(json, null, 2))
       } catch (error) {
         console.error(error.message);
       }
@@ -22,7 +22,7 @@ const useFetchBoards = () => {
     getData();
   }, []);
 
-  return boards;
+  return jsonOutput;
 };
 
-export default useFetchBoards;
+export default useFetchCatalogue;

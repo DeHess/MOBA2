@@ -1,5 +1,4 @@
-async function getData() {
-    console.log("hello")
+async function getBoardData() {
     const url = "https://a.4cdn.org/boards.json";
     try {
     const response = await fetch(url);
@@ -13,4 +12,4 @@ async function getData() {
     console.error(error.message);
     }
 }
-getData();
+getBoardData();

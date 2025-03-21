@@ -16,7 +16,7 @@ const BoardScreen = () => {
       <ScrollView style={styles.scrollView}>
       {boards.length > 0 ? (
           boards.map((board, index) => (
-            <TouchableOpacity key={index} style={styles.item} onPress={() => navigation.navigate('BoardScreen')}>
+            <TouchableOpacity key={index} style={styles.item} onPress={() => navigation.navigate('BoardScreen', { boardID: board.board })}>
               <Text style={styles.itemText}>{board.title}</Text>
             </TouchableOpacity>
           ))
