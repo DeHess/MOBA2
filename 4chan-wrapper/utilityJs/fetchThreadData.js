@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
 const useFetchThread = () => {
-  const [thread, setThread] = useState([]);
+  const [thread, setThread] = useState("");
 
   useEffect(() => {
     const getData = async () => {
@@ -13,7 +13,7 @@ const useFetchThread = () => {
           throw new Error(`Response status: ${response.status}`);
         }
         const json = await response.json();
-        setBoards(json.boards);
+        setThread(JSON.stringify(json, null, 2));
       } catch (error) {
         console.error(error.message);
       }
@@ -22,7 +22,7 @@ const useFetchThread = () => {
     getData();
   }, []);
 
-  return boards;
+  return thread;
 };
 
 export default useFetchThread;

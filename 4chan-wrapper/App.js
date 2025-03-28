@@ -3,6 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import BoardOverviewScreen from './BoardOverviewScreen';
 import BoardScreen from './BoardScreen';
+import ThreadScreen from './ThreadScreen';
 
 const Stack = createStackNavigator();
 
@@ -12,6 +13,7 @@ const App = () => {
       <Stack.Navigator>
         <Stack.Screen name="BoardOverviewScreen" component={BoardOverviewScreen} options={{ headerShown: false }} />
         <Stack.Screen name="BoardScreen" component={BoardScreen} options={{ headerShown: false }}/>
+        <Stack.Screen name="ThreadScreen" component={ThreadScreen} options={{ headerShown: false }}/>
       </Stack.Navigator>
     </NavigationContainer>
   );
