@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 
-const useFetchBoards = () => {
+const useFetchThread = () => {
   const [thread, setThread] = useState([]);
 
   useEffect(() => {
@@ -25,4 +25,4 @@ const useFetchBoards = () => {
   return boards;
 };
 
-export default useFetchBoards;
+export default useFetchThread;

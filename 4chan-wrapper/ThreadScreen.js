@@ -1,14 +1,11 @@
 import React from 'react';
 import { ScrollView, View, Text } from 'react-native';
 import styles from './utilityJs/styles';
-import useFetchCatalogue from './utilityJs/fetchCatalogueData';
+import useFetchThread from './utilityJs/fetchThreadData';
 
-const BoardScreen = ({ route }) => {
-  const { boardID } = route.params;
-  const DEET = useFetchCatalogue(boardID);
-
-  // Flatten all threads into a single list
-  const allThreads = DEET.flatMap(page => page.threads);
+const Thread = ({ route }) => {
+  const { threadID } = route.params;
+  const threadData = useFetchThread(threadID);
 
   return (
     <ScrollView style={[styles.container, { paddingTop: 20 }]}>  
@@ -23,4 +20,4 @@ const BoardScreen = ({ route }) => {
   );
 };
 
-export default BoardScreen;
+export default ThreadScreen;
