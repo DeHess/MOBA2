@@ -1,9 +1,11 @@
 import React from 'react';
-import { ScrollView, View, Text, TouchableOpacity, Image } from 'react-native';
+import { ScrollView, View, Text, TouchableOpacity, Image, Dimensions } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import styles from './utilityJs/styles';
 import useFetchCatalogue from './utilityJs/fetchCatalogueData';
 import he from 'he';
+
+const { width: screenWidth } = Dimensions.get('window'); // get screen width
 
 const BoardScreen = ({ route }) => {
   const { boardID } = route.params;
@@ -22,8 +24,9 @@ const BoardScreen = ({ route }) => {
 
           const { filename, ext, tim } = thread;
           const hasImage = tim && ext;
-          const thumbUrl = `https://i.4cdn.org/${boardID}/${tim}s.jpg`;
-          const imageUrl = hasImage ? `https://i.4cdn.org/${boardID}/${tim}${ext}` : null;
+          const thumbUrl = hasImage ? `https://i.4cdn.org/${boardID}/${tim}s.jpg` : null;
+          const fullUrl = hasImage ? `https://i.4cdn.org/${boardID}/${tim}${ext}` : null;
+
 
           return (
             <TouchableOpacity
@@ -31,11 +34,20 @@ const BoardScreen = ({ route }) => {
               onPress={() => navigation.navigate('ThreadScreen', { threadID: thread.no, boardID })}
               style={{ marginBottom: 20 }}
             >
-              <Text style={styles.threadText}>{title}</Text>
+              <Text style={[styles.threadText, { fontWeight: 'bold' }]}>
+                {title}
+              </Text>
+
               {hasImage && (
                 <Image
-                  source={{ uri: thumbUrl }}
-                  style={{ width: 120, height: 120, marginTop: 5, borderRadius: 8 }}
+                  source={{ uri: thumbUrl }} //or fullURL but is slow
+                  style={{
+                    width: screenWidth - 40, // adjust for padding/margin
+                    height: 200, // fixed height or calculate based on aspect ratio
+                    marginTop: 8,
+                    borderRadius: 12,
+                    alignSelf: 'center',
+                  }}
                   resizeMode="cover"
                 />
               )}
