@@ -7,24 +7,28 @@ import useFetchCatalogue from './utilityJs/fetchCatalogueData';
 const BoardScreen = ({ route }) => {
   const { boardID } = route.params;
   const DEET = useFetchCatalogue(boardID);
-  const navigation = useNavigation(); // Get navigation object
+  const navigation = useNavigation(); 
 
-  // Flatten all threads into a single list
   const allThreads = DEET.flatMap(page => page.threads);
 
   return (
     <ScrollView style={[styles.container, { paddingTop: 20 }]}>  
       <View style={styles.listContainer}>
-        {allThreads.map((thread) => (
+        {allThreads.map((thread) => {
+        const rawTitle = thread.sub || 'Untitled';
+        const title = rawTitle.length > 30 ? rawTitle.slice(0, 50) + '…' : rawTitle;
+
+        return (
           <TouchableOpacity
             key={thread.no}
-            onPress={() => navigation.navigate('ThreadScreen', { threadNo: thread.no })}
+            onPress={() => navigation.navigate('ThreadScreen', { threadID: thread.no, boardID })}
           >
             <Text style={styles.threadText}>
-              Thread No: {thread.no}
+              {title}
             </Text>
           </TouchableOpacity>
-        ))}
+        );
+        })}
       </View>
     </ScrollView>
   );
