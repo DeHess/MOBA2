@@ -42,8 +42,8 @@ const BoardScreen = ({ route }) => {
                 <Image
                   source={{ uri: thumbUrl }} //or fullURL but is slow
                   style={{
-                    width: screenWidth - 40, // adjust for padding/margin
-                    height: 200, // fixed height or calculate based on aspect ratio
+                    width: screenWidth - 40, 
+                    height: 200, 
                     marginTop: 8,
                     borderRadius: 12,
                     alignSelf: 'center',
