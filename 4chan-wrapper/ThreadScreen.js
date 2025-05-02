@@ -8,7 +8,7 @@ const ThreadScreen = ({ route }) => {
   const posts = useFetchThread(threadID, boardID);
 
   return (
-    <ScrollView style={[styles.container, { paddingTop: 20 }]}>  
+    <ScrollView style={[styles.container, { paddingTop: 20, paddingHorizontal: 10 }]}>
       <View style={styles.listContainer}>
         {Array.isArray(posts) && posts.length > 0 ? (
           posts.map((post, index) => {
@@ -23,9 +23,9 @@ const ThreadScreen = ({ route }) => {
                 style={{
                   borderWidth: 1,
                   borderColor: '#ccc',
-                  borderRadius: 8,
+                  borderRadius: 4, // reduced rounding
                   padding: 10,
-                  marginBottom: 20,
+                  marginBottom: 10, // reduced space between posts
                   backgroundColor: '#f9f9f9',
                 }}
               >
