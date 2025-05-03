@@ -1,96 +1,62 @@
-import React, { useEffect, useState } from 'react';
-import { ScrollView, View, Text, StyleSheet, TouchableOpacity, Linking } from 'react-native';
+import React from 'react';
+import { ScrollView, View, Text, TouchableOpacity, Image, Dimensions } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import styles from './utilityJs/styles';
+import useFetchCatalogue from './utilityJs/fetchCatalogueData';
+import he from 'he';
 
-const BoardScreen = () => {
-  const [boards, setBoards] = useState([]);
+const { width: screenWidth } = Dimensions.get('window'); // get screen width
 
-  useEffect(() => {
-    const getData = async () => {
-      console.log('Fetching data...');
-      const url = 'https://a.4cdn.org/boards.json';
-      try {
-        const response = await fetch(url);
-        if (!response.ok) {
-          throw new Error(`Response status: ${response.status}`);
-        }
-        const json = await response.json();
-        setBoards(json.boards); // Store the boards array in state
-      } catch (error) {
-        console.error(error.message);
-      }
-    };
+const BoardScreen = ({ route }) => {
+  const { boardID } = route.params;
+  const DEET = useFetchCatalogue(boardID);
+  const navigation = useNavigation(); 
 
-    getData();
-  }, []);
-
-  const openBoardLink = (boardId) => {
-    const boardUrl = `https://boards.4chan.org/${boardId}/`;
-    Linking.openURL(boardUrl).catch(err => console.error("Couldn't load page", err));
-  };
+  const allThreads = DEET.flatMap(page => page.threads);
 
   return (
-    <View style={styles.container}>
-      <View style={styles.headerContainer}>
-        <Text style={styles.header}>4chan Boards</Text>
-      </View>
-      <ScrollView style={styles.scrollView}>
-      {boards.length > 0 ? (
-          boards.map((board, index) => (
-            <TouchableOpacity key={index} style={styles.item} onPress={() => openBoardLink(board.board)}>
-              <Text style={styles.itemText}>{board.title}</Text>
+    <ScrollView style={[styles.container, { paddingTop: 20 }]}>  
+      <View style={styles.listContainer}>
+        {allThreads.map((thread) => {
+          const rawTitle = thread.sub || 'Untitled Thread';
+          const decodedTitle = he.decode(rawTitle);
+          const title = decodedTitle.length > 30 ? decodedTitle.slice(0, 30) + '…' : decodedTitle;
+
+          const { filename, ext, tim } = thread;
+          const hasImage = tim && ext;
+          const thumbUrl = hasImage ? `https://i.4cdn.org/${boardID}/${tim}s.jpg` : null;
+          const fullUrl = hasImage ? `https://i.4cdn.org/${boardID}/${tim}${ext}` : null;
+
+
+          return (
+            <TouchableOpacity
+              key={thread.no}
+              onPress={() => navigation.navigate('ThreadScreen', { threadID: thread.no, boardID })}
+              style={{ marginBottom: 20 }}
+            >
+              <Text style={[styles.threadText, { fontWeight: 'bold' }]}>
+                {title}
+              </Text>
+
+              {hasImage && (
+                <Image
+                  source={{ uri: thumbUrl }} //or fullURL but is slow
+                  style={{
+                    width: screenWidth - 40, 
+                    height: 200, 
+                    marginTop: 8,
+                    borderRadius: 12,
+                    alignSelf: 'center',
+                  }}
+                  resizeMode="cover"
+                />
+              )}
             </TouchableOpacity>
-          ))
-        ) : (
-          <Text style={styles.loadingText}>Loading...</Text>
-        )}
-      </ScrollView>
-    </View>
+          );
+        })}
+      </View>
+    </ScrollView>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-  },
-  headerContainer: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    backgroundColor: '#fff',
-    paddingVertical: 15,
-    alignItems: 'center',
-    elevation: 4,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.2,
-    shadowRadius: 2,
-    zIndex: 10,
-  },
-  header: {
-    fontSize: 20,
-    fontWeight: 'bold',
-  },
-  scrollView: {
-    marginTop: 60,
-    paddingHorizontal: 20,
-  },
-  item: {
-    backgroundColor: '#f0f0f0',
-    padding: 15,
-    marginVertical: 5,
-    borderRadius: 8,
-  },
-  itemText: {
-    fontSize: 16,
-    fontWeight: 'bold',
-  },
-  loadingText: {
-    fontSize: 16,
-    textAlign: 'center',
-    marginTop: 20,
-  },
-});
 
 export default BoardScreen;
