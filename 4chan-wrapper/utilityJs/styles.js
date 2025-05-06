@@ -13,9 +13,10 @@ const getStyles = (theme) =>
       left: 0,
       right: 0,
       backgroundColor: theme.cardBackground,
-      paddingVertical: 15,
+      paddingTop: 18,
+      paddingBottom: 10,
       alignItems: 'center',
-      flexDirection: 'row',  // Add this line
+      flexDirection: 'row', 
       elevation: 4,
       shadowColor: theme.border,
       shadowOffset: { width: 0, height: 2 },
@@ -29,8 +30,8 @@ const getStyles = (theme) =>
       color: theme.headerText,
     },
     scrollView: {
-      marginTop: 60,
-      paddingHorizontal: 20,
+      marginTop: 35,
+      paddingHorizontal: 10,
       backgroundColor: theme.background,
     },
     item: {
