@@ -1,21 +1,24 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { ScrollView, View, Text, TouchableOpacity, Image, Dimensions } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import styles from './utilityJs/styles';
+import { ThemeContext } from './utilityJs/ThemeContext'; // Import ThemeContext
+import getStyles from './utilityJs/styles'; // Import getStyles function
 import useFetchCatalogue from './utilityJs/fetchCatalogueData';
 import he from 'he';
 
-const { width: screenWidth } = Dimensions.get('window'); // get screen width
+const { width: screenWidth } = Dimensions.get('window'); // Get screen width
 
 const BoardScreen = ({ route }) => {
   const { boardID } = route.params;
+  const { theme } = useContext(ThemeContext); // Get current theme
+  const styles = getStyles(theme); // Apply theme-aware styles
   const DEET = useFetchCatalogue(boardID);
-  const navigation = useNavigation(); 
+  const navigation = useNavigation();
 
   const allThreads = DEET.flatMap(page => page.threads);
 
   return (
-    <ScrollView style={[styles.container, { paddingTop: 20 }]}>  
+    <ScrollView style={[styles.container, { paddingTop: 20 }]}>
       <View style={styles.listContainer}>
         {allThreads.map((thread) => {
           const rawTitle = thread.sub || 'Untitled Thread';
@@ -26,7 +29,6 @@ const BoardScreen = ({ route }) => {
           const hasImage = tim && ext;
           const thumbUrl = hasImage ? `https://i.4cdn.org/${boardID}/${tim}s.jpg` : null;
           const fullUrl = hasImage ? `https://i.4cdn.org/${boardID}/${tim}${ext}` : null;
-
 
           return (
             <TouchableOpacity
@@ -40,10 +42,10 @@ const BoardScreen = ({ route }) => {
 
               {hasImage && (
                 <Image
-                  source={{ uri: thumbUrl }} //or fullURL but is slow
+                  source={{ uri: thumbUrl }} // or fullURL, but it's slower
                   style={{
-                    width: screenWidth - 40, 
-                    height: 200, 
+                    width: screenWidth - 40,
+                    height: 200,
                     marginTop: 8,
                     borderRadius: 12,
                     alignSelf: 'center',

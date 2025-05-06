@@ -17,7 +17,7 @@ const App = () => {
         <Stack.Screen name="BoardOverviewScreen" component={BoardOverviewScreen} options={{ headerShown: false }} />
         <Stack.Screen name="BoardScreen" component={BoardScreen} options={{ headerShown: false }}/>
         <Stack.Screen name="ThreadScreen" component={ThreadScreen} options={{ headerShown: false }}/>
-        <Stack.Screen name="Settings" component={SettingsScreen} />
+        <Stack.Screen name="Settings" component={SettingsScreen} options={{ headerShown: false }}/>
       </Stack.Navigator>
     </NavigationContainer>
     </ThemeProvider>

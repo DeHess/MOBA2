@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { ScrollView, View, Text, Image } from 'react-native';
-import styles from './utilityJs/styles';
+import { ThemeContext } from './utilityJs/ThemeContext'; // Import ThemeContext
+import getStyles from './utilityJs/styles'; // Import getStyles function
 import useFetchThread from './utilityJs/fetchThreadData';
 
 const ThreadScreen = ({ route }) => {
   const { threadID, boardID } = route.params;
+  const { theme } = useContext(ThemeContext); // Get current theme
+  const styles = getStyles(theme); // Apply theme-aware styles
   const posts = useFetchThread(threadID, boardID);
 
   return (
@@ -22,14 +25,14 @@ const ThreadScreen = ({ route }) => {
                 key={index}
                 style={{
                   borderWidth: 1,
-                  borderColor: '#ccc',
+                  borderColor: theme.border,
                   borderRadius: 4, // reduced rounding
                   padding: 10,
                   marginBottom: 10, // reduced space between posts
-                  backgroundColor: '#f9f9f9',
+                  backgroundColor: theme.cardBackground,
                 }}
               >
-                <Text>{post.com}</Text>
+                <Text style={{ color: theme.text }}>{post.com}</Text>
                 {imageUrl && (
                   <Image
                     source={{ uri: imageUrl }}
@@ -41,7 +44,7 @@ const ThreadScreen = ({ route }) => {
             );
           })
         ) : (
-          <Text>Loading</Text>
+          <Text style={{ color: theme.text }}>Loading</Text>
         )}
       </View>
     </ScrollView>
