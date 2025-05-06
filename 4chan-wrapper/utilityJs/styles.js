@@ -15,6 +15,7 @@ const getStyles = (theme) =>
       backgroundColor: theme.cardBackground,
       paddingVertical: 15,
       alignItems: 'center',
+      flexDirection: 'row',  // Add this line
       elevation: 4,
       shadowColor: theme.border,
       shadowOffset: { width: 0, height: 2 },

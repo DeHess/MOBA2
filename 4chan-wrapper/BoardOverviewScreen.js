@@ -14,18 +14,18 @@ const BoardScreen = () => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.headerContainer}>
-        <View style={{ flex: 1 }} />
-        <Text style={[styles.header, { textAlign: 'center', flex: 2 }]}>
-          4chan Boards
-        </Text>
-        <TouchableOpacity
-          style={{ flex: 1, alignItems: 'flex-end', paddingRight: 5 }}
-          onPress={() => navigation.navigate('Settings')}
-        >
-          <Icon name="settings-outline" size={28} color={theme.text} />
-        </TouchableOpacity>
-      </View>
+<View style={styles.headerContainer}>
+  <View style={{ flex: 1.05 }} />
+  <Text style={[styles.header, { textAlign: 'center' }]}>
+    4chan Boards
+  </Text>
+  <TouchableOpacity
+    style={{ flex: 1, alignItems: 'flex-end', paddingRight: 5 }}
+    onPress={() => navigation.navigate('Settings')}
+  >
+    <Icon name="settings-outline" size={28} color={theme.text} />
+  </TouchableOpacity>
+</View>
 
       <ScrollView
         style={styles.scrollView}
