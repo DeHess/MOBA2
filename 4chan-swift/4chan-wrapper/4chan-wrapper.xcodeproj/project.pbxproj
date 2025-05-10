@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXFileReference section */
-		5B30220B2DCDF21B007CAE6A /* 4chan-wrapper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = "4chan-wrapper.app"; path = "/Users/lokaladmin/Documents/MOBA2/4chan-swift/4chan-wrapper/build/Debug-iphoneos/4chan-wrapper.app"; sourceTree = "<absolute>"; };
+		5B7CE08C2DCE3D4C003DF84C /* 4chan-wrapper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "4chan-wrapper.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -57,6 +57,7 @@
 				5B7CE0382DCE23D4003DF84C /* ViewModels */,
 				5B7CE0282DCE2275003DF84C /* Views */,
 				5B30220D2DCDF21B007CAE6A /* App */,
+				5B7CE08C2DCE3D4C003DF84C /* 4chan-wrapper.app */,
 			);
 			sourceTree = "<group>";
 		};
@@ -86,7 +87,7 @@
 			packageProductDependencies = (
 			);
 			productName = "4chan-wrapper";
-			productReference = 5B30220B2DCDF21B007CAE6A /* 4chan-wrapper.app */;
+			productReference = 5B7CE08C2DCE3D4C003DF84C /* 4chan-wrapper.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
