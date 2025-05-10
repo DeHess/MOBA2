@@ -27,7 +27,7 @@ class Theme: ObservableObject, Equatable {
     static let dark = Theme(
         background: Color.black,
         cardBackground: Color(.systemGray5),
-        text: Color.white,
+        text: Color.black,
         headerText: Color.white,
         border: Color.gray
     )

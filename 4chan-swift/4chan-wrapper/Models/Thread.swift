@@ -6,3 +6,6 @@ struct Thread: Identifiable, Decodable {
     let ext: String?
     let tim: UInt64?
 }
+struct ThreadResponse: Decodable {
+    let posts: [Post]
+}
