@@ -6,33 +6,40 @@
 	objectVersion = 77;
 	objects = {
 
-/* Begin PBXCopyFilesBuildPhase section */
-		5B30210C2DC65C50007CAE6A /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = /usr/share/man/man1/;
-			dstSubfolderSpec = 0;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 1;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
 /* Begin PBXFileReference section */
-		5B30210E2DC65C50007CAE6A /* GameOfLife */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = GameOfLife; sourceTree = BUILT_PRODUCTS_DIR; };
-		5B30211C2DC663C7007CAE6A /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		5B7CE08C2DCE3D4C003DF84C /* 4chan-wrapper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "4chan-wrapper.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		5B3021102DC65C50007CAE6A /* GameOfLife */ = {
+		5B30220D2DCDF21B007CAE6A /* App */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = GameOfLife;
+			path = App;
+			sourceTree = "<group>";
+		};
+		5B7CE0282DCE2275003DF84C /* Views */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Views;
+			sourceTree = "<group>";
+		};
+		5B7CE0382DCE23D4003DF84C /* ViewModels */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		5B7CE0402DCE2480003DF84C /* Models */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Models;
+			sourceTree = "<group>";
+		};
+		5B7CE0572DCE281A003DF84C /* Resources */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		5B30210B2DC65C50007CAE6A /* Frameworks */ = {
+		5B3022082DCDF21B007CAE6A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -42,84 +49,93 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		5B3021052DC65C50007CAE6A = {
+		5B3022022DCDF21B007CAE6A = {
 			isa = PBXGroup;
 			children = (
-				5B30211C2DC663C7007CAE6A /* .gitignore */,
-				5B3021102DC65C50007CAE6A /* GameOfLife */,
-				5B30210F2DC65C50007CAE6A /* Products */,
+				5B7CE0572DCE281A003DF84C /* Resources */,
+				5B7CE0402DCE2480003DF84C /* Models */,
+				5B7CE0382DCE23D4003DF84C /* ViewModels */,
+				5B7CE0282DCE2275003DF84C /* Views */,
+				5B30220D2DCDF21B007CAE6A /* App */,
+				5B7CE08C2DCE3D4C003DF84C /* 4chan-wrapper.app */,
 			);
-			sourceTree = "<group>";
-		};
-		5B30210F2DC65C50007CAE6A /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				5B30210E2DC65C50007CAE6A /* GameOfLife */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		5B30210D2DC65C50007CAE6A /* GameOfLife */ = {
+		5B30220A2DCDF21B007CAE6A /* 4chan-wrapper */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 5B3021152DC65C50007CAE6A /* Build configuration list for PBXNativeTarget "GameOfLife" */;
+			buildConfigurationList = 5B3022162DCDF21D007CAE6A /* Build configuration list for PBXNativeTarget "4chan-wrapper" */;
 			buildPhases = (
-				5B30210A2DC65C50007CAE6A /* Sources */,
-				5B30210B2DC65C50007CAE6A /* Frameworks */,
-				5B30210C2DC65C50007CAE6A /* CopyFiles */,
+				5B3022072DCDF21B007CAE6A /* Sources */,
+				5B3022082DCDF21B007CAE6A /* Frameworks */,
+				5B3022092DCDF21B007CAE6A /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				5B3021102DC65C50007CAE6A /* GameOfLife */,
+				5B30220D2DCDF21B007CAE6A /* App */,
+				5B7CE0282DCE2275003DF84C /* Views */,
+				5B7CE0382DCE23D4003DF84C /* ViewModels */,
+				5B7CE0402DCE2480003DF84C /* Models */,
+				5B7CE0572DCE281A003DF84C /* Resources */,
 			);
-			name = GameOfLife;
+			name = "4chan-wrapper";
 			packageProductDependencies = (
 			);
-			productName = GameOfLife;
-			productReference = 5B30210E2DC65C50007CAE6A /* GameOfLife */;
-			productType = "com.apple.product-type.tool";
+			productName = "4chan-wrapper";
+			productReference = 5B7CE08C2DCE3D4C003DF84C /* 4chan-wrapper.app */;
+			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		5B3021062DC65C50007CAE6A /* Project object */ = {
+		5B3022032DCDF21B007CAE6A /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1630;
 				LastUpgradeCheck = 1630;
 				TargetAttributes = {
-					5B30210D2DC65C50007CAE6A = {
+					5B30220A2DCDF21B007CAE6A = {
 						CreatedOnToolsVersion = 16.3;
 					};
 				};
 			};
-			buildConfigurationList = 5B3021092DC65C50007CAE6A /* Build configuration list for PBXProject "GameOfLife" */;
+			buildConfigurationList = 5B3022062DCDF21B007CAE6A /* Build configuration list for PBXProject "4chan-wrapper" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
 			);
-			mainGroup = 5B3021052DC65C50007CAE6A;
+			mainGroup = 5B3022022DCDF21B007CAE6A;
 			minimizedProjectReferenceProxies = 1;
 			preferredProjectObjectVersion = 77;
-			productRefGroup = 5B30210F2DC65C50007CAE6A /* Products */;
+			productRefGroup = 5B3022022DCDF21B007CAE6A;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				5B30210D2DC65C50007CAE6A /* GameOfLife */,
+				5B30220A2DCDF21B007CAE6A /* 4chan-wrapper */,
 			);
 		};
 /* End PBXProject section */
 
+/* Begin PBXResourcesBuildPhase section */
+		5B3022092DCDF21B007CAE6A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
-		5B30210A2DC65C50007CAE6A /* Sources */ = {
+		5B3022072DCDF21B007CAE6A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -129,7 +145,7 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		5B3021132DC65C50007CAE6A /* Debug */ = {
+		5B3022142DCDF21D007CAE6A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -181,18 +197,18 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.4;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MACOSX_DEPLOYMENT_TARGET = 15.3;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = macosx;
+				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
-		5B3021142DC65C50007CAE6A /* Release */ = {
+		5B3022152DCDF21D007CAE6A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -238,57 +254,94 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.4;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
-				MACOSX_DEPLOYMENT_TARGET = 15.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
-				SDKROOT = macosx;
+				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
-		5B3021162DC65C50007CAE6A /* Debug */ = {
+		5B3022172DCDF21D007CAE6A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				MACOSX_DEPLOYMENT_TARGET = 15.2;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.zhaw.-chan-wrapper";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
-		5B3021172DC65C50007CAE6A /* Release */ = {
+		5B3022182DCDF21D007CAE6A /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				MACOSX_DEPLOYMENT_TARGET = 15.2;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.zhaw.-chan-wrapper";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		5B3021092DC65C50007CAE6A /* Build configuration list for PBXProject "GameOfLife" */ = {
+		5B3022062DCDF21B007CAE6A /* Build configuration list for PBXProject "4chan-wrapper" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				5B3021132DC65C50007CAE6A /* Debug */,
-				5B3021142DC65C50007CAE6A /* Release */,
+				5B3022142DCDF21D007CAE6A /* Debug */,
+				5B3022152DCDF21D007CAE6A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		5B3021152DC65C50007CAE6A /* Build configuration list for PBXNativeTarget "GameOfLife" */ = {
+		5B3022162DCDF21D007CAE6A /* Build configuration list for PBXNativeTarget "4chan-wrapper" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				5B3021162DC65C50007CAE6A /* Debug */,
-				5B3021172DC65C50007CAE6A /* Release */,
+				5B3022172DCDF21D007CAE6A /* Debug */,
+				5B3022182DCDF21D007CAE6A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 5B3021062DC65C50007CAE6A /* Project object */;
+	rootObject = 5B3022032DCDF21B007CAE6A /* Project object */;
 }
