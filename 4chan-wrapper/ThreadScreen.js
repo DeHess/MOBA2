@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useMemo } from 'react';
 import { ScrollView, View, Text, Image } from 'react-native';
 import { ThemeContext } from './utilityJs/ThemeContext'; // Import ThemeContext
 import getStyles from './utilityJs/styles'; // Import getStyles function
@@ -10,41 +10,93 @@ const ThreadScreen = ({ route }) => {
   const styles = getStyles(theme); // Apply theme-aware styles
   const posts = useFetchThread(threadID, boardID);
 
+  // Organize posts so replies appear under their referenced post
+  const structuredPosts = useMemo(() => {
+    if (!Array.isArray(posts) || posts.length === 0) return [];
+
+    const postMap = new Map();
+    const sortedPosts = [];
+
+    posts.forEach(post => {
+      if (post?.no) {
+        postMap.set(post.no, { ...post, replies: [] });
+      }
+    });
+
+    posts.forEach(post => {
+      if (post?.com) {
+        const match = post.com.match(/#p(\d+)/); // Extract referenced post number
+        if (match) {
+          const parentNo = parseInt(match[1], 10);
+          if (postMap.has(parentNo)) {
+            postMap.get(parentNo).replies.push(post);
+            return; // Prevent duplicate entry in sorted list
+          }
+        }
+        sortedPosts.push(postMap.get(post.no));
+      }
+    });
+
+    return sortedPosts;
+  }, [posts]);
+
   return (
     <ScrollView style={[styles.container, { paddingTop: 20, paddingHorizontal: 10 }]}>
       <View style={styles.listContainer}>
-        {Array.isArray(posts) && posts.length > 0 ? (
-          posts.map((post, index) => {
-            const imageUrl =
-              post.filename && post.ext && post.tim
-                ? `https://i.4cdn.org/${boardID}/${post.tim}${post.ext}`
-                : null;
-
-            return (
+        {structuredPosts.length > 0 ? (
+          structuredPosts.map((post, index) => (
+            <View key={index} style={{ marginBottom: 10 }}>
+              {/* Original post */}
               <View
-                key={index}
                 style={{
                   borderWidth: 1,
                   borderColor: theme.border,
-                  borderRadius: 4, // reduced rounding
+                  borderRadius: 4,
                   padding: 10,
-                  marginBottom: 10, // reduced space between posts
                   backgroundColor: theme.cardBackground,
                 }}
               >
+                <Text style={{ color: theme.text, fontWeight: 'bold' }}>#{post.no}</Text>
                 <Text style={{ color: theme.text }}>{post.com}</Text>
-                {imageUrl && (
+                {post.filename && post.ext && post.tim && (
                   <Image
-                    source={{ uri: imageUrl }}
+                    source={{ uri: `https://i.4cdn.org/${boardID}/${post.tim}${post.ext}` }}
                     style={{ width: '100%', height: 250, marginTop: 10 }}
                     resizeMode="contain"
                   />
                 )}
               </View>
-            );
-          })
+
+              {/* Replies (Indented) */}
+              {post.replies.length > 0 &&
+                post.replies.map((reply, replyIndex) => (
+                  <View
+                    key={replyIndex}
+                    style={{
+                      marginTop: 5,
+                      marginLeft: 15, // Indent replies
+                      borderWidth: 1,
+                      borderColor: theme.border,
+                      borderRadius: 4,
+                      padding: 8,
+                      backgroundColor: theme.cardBackground,
+                    }}
+                  >
+                    <Text style={{ color: theme.text, fontWeight: 'bold' }}>#{reply.no}</Text>
+                    <Text style={{ color: theme.text }}>{reply.com}</Text>
+                    {reply.filename && reply.ext && reply.tim && (
+                      <Image
+                        source={{ uri: `https://i.4cdn.org/${boardID}/${reply.tim}${reply.ext}` }}
+                        style={{ width: '100%', height: 200, marginTop: 10 }}
+                        resizeMode="contain"
+                      />
+                    )}
+                  </View>
+                ))}
+            </View>
+          ))
         ) : (
-          <Text style={{ color: theme.text }}>Loading</Text>
+          <Text style={{ color: theme.text }}>Loading...</Text>
         )}
       </View>
     </ScrollView>
