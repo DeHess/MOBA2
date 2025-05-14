@@ -1,22 +1,20 @@
 import React, { useContext, useMemo } from 'react';
 import { ScrollView, View, Text, Image } from 'react-native';
-import { ThemeContext } from './utilityJs/ThemeContext'; // Import ThemeContext
-import getStyles from './utilityJs/styles'; // Import getStyles function
+import { ThemeContext } from './utilityJs/ThemeContext'; 
+import getStyles from './utilityJs/styles'; 
 import useFetchThread from './utilityJs/fetchThreadData';
 
 const ThreadScreen = ({ route }) => {
   const { threadID, boardID } = route.params;
-  const { theme } = useContext(ThemeContext); // Get current theme
-  const styles = getStyles(theme); // Apply theme-aware styles
+  const { theme } = useContext(ThemeContext);
+  const styles = getStyles(theme); 
   const posts = useFetchThread(threadID, boardID);
 
   // Organize posts so replies appear under their referenced post
   const structuredPosts = useMemo(() => {
     if (!Array.isArray(posts) || posts.length === 0) return [];
-
     const postMap = new Map();
     const sortedPosts = [];
-
     posts.forEach(post => {
       if (post?.no) {
         postMap.set(post.no, { ...post, replies: [] });
@@ -25,12 +23,12 @@ const ThreadScreen = ({ route }) => {
 
     posts.forEach(post => {
       if (post?.com) {
-        const match = post.com.match(/#p(\d+)/); // Extract referenced post number
+        const match = post.com.match(/#p(\d+)/); 
         if (match) {
           const parentNo = parseInt(match[1], 10);
           if (postMap.has(parentNo)) {
             postMap.get(parentNo).replies.push(post);
-            return; // Prevent duplicate entry in sorted list
+            return; 
           }
         }
         sortedPosts.push(postMap.get(post.no));
@@ -67,14 +65,14 @@ const ThreadScreen = ({ route }) => {
                 )}
               </View>
 
-              {/* Replies (Indented) */}
+              {/* Replies Indented */}
               {post.replies.length > 0 &&
                 post.replies.map((reply, replyIndex) => (
                   <View
                     key={replyIndex}
                     style={{
                       marginTop: 5,
-                      marginLeft: 15, // Indent replies
+                      marginLeft: 15,
                       borderWidth: 1,
                       borderColor: theme.border,
                       borderRadius: 4,
