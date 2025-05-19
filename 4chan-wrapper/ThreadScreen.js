@@ -4,14 +4,14 @@ import { ThemeContext } from './utilityJs/ThemeContext'; // Import ThemeContext
 import getStyles from './utilityJs/styles'; // Import getStyles function
 import useFetchThread from './utilityJs/fetchThreadData';
 import { decode } from 'html-entities'; // Import library to decode HTML entities
+import he from 'he';
 
 const ThreadScreen = ({ route }) => {
   const { threadID, boardID } = route.params;
-  const { theme } = useContext(ThemeContext); // Get current theme
-  const styles = getStyles(theme); // Apply theme-aware styles
+  const { theme } = useContext(ThemeContext); 
+  const styles = getStyles(theme); 
   const posts = useFetchThread(threadID, boardID);
 
-  // Organize posts so replies appear under their referenced post
   const structuredPosts = useMemo(() => {
     if (!Array.isArray(posts) || posts.length === 0) return [];
 
@@ -41,11 +41,12 @@ const ThreadScreen = ({ route }) => {
     return sortedPosts;
   }, [posts]);
 
-  // Function to clean and decode HTML content
   const cleanPostText = (text) => {
-    if (!text) return ''; 
-    const strippedText = text.replace(/<a href="#p\d+" class="quotelink">.*?<\/a><br>/g, ''); // Remove href links
-    return decode(strippedText); // Decode HTML entities
+    if (!text) return '';
+    let strippedText = text.replace(/<a href="#p\d+" class="quotelink">.*?<\/a><br>/g, '');
+    strippedText = strippedText.replace(/<br\s*\/?>/gi, '\n');
+    strippedText = strippedText.replace(/<\/?[^>]+(>|$)/g, '');
+    return he.decode(strippedText);
   };
 
   return (

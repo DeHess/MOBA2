@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
 import { ScrollView, View, Text, TouchableOpacity, Image, Dimensions } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { ThemeContext } from './utilityJs/ThemeContext'; // Import ThemeContext
-import getStyles from './utilityJs/styles'; // Import getStyles function
+import { ThemeContext } from './utilityJs/ThemeContext'; 
+import getStyles from './utilityJs/styles'; 
 import useFetchCatalogue from './utilityJs/fetchCatalogueData';
 import he from 'he';
 
@@ -10,8 +10,8 @@ const { width: screenWidth } = Dimensions.get('window'); // Get screen width
 
 const BoardScreen = ({ route }) => {
   const { boardID } = route.params;
-  const { theme } = useContext(ThemeContext); // Get current theme
-  const styles = getStyles(theme); // Apply theme-aware styles
+  const { theme } = useContext(ThemeContext); 
+  const styles = getStyles(theme); 
   const DEET = useFetchCatalogue(boardID);
   const navigation = useNavigation();
 

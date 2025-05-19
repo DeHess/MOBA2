@@ -7,8 +7,8 @@ import useFetchBoards from './utilityJs/fetchBoardData';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 const BoardScreen = () => {
-  const { theme } = useContext(ThemeContext); // Get current theme
-  const styles = getStyles(theme); // Apply theme-aware styles
+  const { theme } = useContext(ThemeContext); 
+  const styles = getStyles(theme); 
   const navigation = useNavigation();
   const boards = useFetchBoards();
 
